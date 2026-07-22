@@ -1,0 +1,25 @@
+# Matriz de medidas de mitigación propuestas
+
+La presente matriz establece la relación entre las vulnerabilidades identificadas durante el diagnóstico de seguridad, las medidas de mitigación propuestas y los beneficios esperados de su implementación. Constituye la síntesis de la propuesta desarrollada en la investigación y demuestra la correspondencia entre los hallazgos obtenidos mediante MobSF y las recomendaciones fundamentadas en la **ISO/IEC 27032** y **OWASP MASVS**.
+
+| Categoría           | Vulnerabilidad identificada                         | Medida de mitigación propuesta                                                                                                                   | Beneficio esperado                                                                                             |
+| ------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| Gestión de permisos | Uso de permisos sensibles                           | Aplicar el principio de mínimo privilegio, solicitando únicamente los permisos estrictamente necesarios para el funcionamiento de la aplicación. | Reducción del acceso a recursos sensibles y disminución del riesgo de uso indebido de información del usuario. |
+| AndroidManifest.xml | Componentes exportados                              | Restringir la exportación de componentes y definir permisos de acceso cuando sea necesario.                                                      | Reducción de la superficie de ataque y prevención de accesos no autorizados.                                   |
+| AndroidManifest.xml | `allowBackup` habilitado                            | Deshabilitar la opción `allowBackup` en aplicaciones que almacenen información sensible.                                                         | Protección de la información frente a procesos de extracción o restauración no autorizados.                    |
+| AndroidManifest.xml | Tráfico en texto plano habilitado                   | Utilizar exclusivamente comunicaciones cifradas mediante HTTPS/TLS y deshabilitar `usesCleartextTraffic`.                                        | Protección de la confidencialidad e integridad de la información transmitida.                                  |
+| Código fuente       | Uso de algoritmos SHA-1 y MD5                       | Sustituir algoritmos criptográficos obsoletos por alternativas seguras como SHA-256 o SHA-3.                                                     | Mayor resistencia frente a ataques criptográficos y fortalecimiento de la integridad de la información.        |
+| Código fuente       | Uso de AES/CBC con PKCS5/PKCS7                      | Implementar modos de cifrado autenticados, como AES-GCM, para proteger la información almacenada y transmitida.                                  | Incremento de la seguridad de los mecanismos criptográficos utilizados por la aplicación.                      |
+| Código fuente       | Almacenamiento inseguro mediante SharedPreferences  | Almacenar información sensible utilizando mecanismos de cifrado, como EncryptedSharedPreferences o Android Keystore.                             | Protección de la información almacenada localmente frente a accesos no autorizados.                            |
+| Código fuente       | Validación insuficiente de entradas y consultas SQL | Implementar validación de datos de entrada y consultas parametrizadas.                                                                           | Reducción del riesgo de manipulación de datos y vulnerabilidades asociadas al procesamiento de información.    |
+| Certificados        | Uso exclusivo del esquema de firma V1               | Firmar la aplicación utilizando los esquemas V2 y V3, compatibles con versiones recientes de Android.                                            | Fortalecimiento de la autenticidad e integridad del APK distribuido.                                           |
+| Protección del APK  | Protección limitada frente a ingeniería inversa     | Implementar ofuscación del código, detección de depuración y mecanismos de protección contra ingeniería inversa.                                 | Mayor resistencia frente al análisis, modificación y reutilización maliciosa de la aplicación.                 |
+
+---
+
+## Conclusiones
+
+- Todas las vulnerabilidades identificadas durante el diagnóstico cuentan con una medida de mitigación específica.
+- Las recomendaciones propuestas se encuentran sustentadas en los principios de la **ISO/IEC 27032** y en los controles definidos por **OWASP MASVS**.
+- La implementación de estas medidas contribuiría a fortalecer la confidencialidad, integridad y disponibilidad de la información procesada por aplicaciones Android distribuidas fuera de Google Play.
+- La matriz constituye la base de la propuesta de mitigación y de la validación documental desarrollada en la investigación.
